@@ -100,10 +100,11 @@ function copy(s) {
             <span class="star" @click="rate(0)"> </span>
             <span
               v-for="i in 10"
-              class="star"
+              class="star hint"
               :class="{ rating: sbj.rating == i }"
               @click="rate(i)">
               ★
+              <span class="tips">{{ i }}</span>
             </span>
           </div>
         </div>
@@ -225,11 +226,12 @@ function copy(s) {
     }
     .tip {
       padding: var(--pad);
+      background: var(--dark);
     }
     &:hover .tip {
       display: none;
     }
-    .tips {
+    > .tips {
       padding: var(--pad);
       left: unset;
       right: 0;
@@ -265,10 +267,13 @@ function copy(s) {
                 opacity: 0;
               }
             }
-
             .star {
               @include interactive;
               border-radius: 0;
+              .tips {
+                place-content: center;
+                width: 100%;
+              }
             }
           }
         }

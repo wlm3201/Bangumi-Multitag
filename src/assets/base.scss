@@ -201,10 +201,10 @@ progress {
 
 .hint {
   position: relative;
-  &:hover .tips {
+  &:hover > .tips {
     display: flex;
   }
-  .tips {
+  > .tips {
     display: none;
     position: absolute;
     top: 100%;
