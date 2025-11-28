@@ -31,4 +31,8 @@ import { crawler } from '@/scripts/crawler'
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.settings {
+  white-space: pre-wrap;
+}
+</style>

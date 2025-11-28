@@ -16,10 +16,16 @@ function scroll(e) {
 
 <style scoped lang="scss">
 .shelf {
+  height: 100vh;
   overflow: scroll;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
   grid-auto-rows: 270px;
   gap: 1rem;
+}
+@media (max-width: 768px) {
+  .shelf {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

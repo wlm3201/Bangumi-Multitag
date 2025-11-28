@@ -26,6 +26,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    host: true,
+  },
   base: gh ? 'Bangumi-Multitag' : '',
   build: {
     rollupOptions: {
