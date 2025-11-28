@@ -1,0 +1,236 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Microsoft Yahei';
+  user-select: none;
+  touch-action: manipulation;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+  --light: rgba(255, 255, 255, 0.5);
+  --dark: rgba(0, 0, 0, 0.5);
+  --bg: black;
+  --font: white;
+  --border: var(--font) solid medium;
+  --thin: var(--font) solid thin;
+  --pad: 0.5rem;
+  --gap: 0.5rem;
+  --blur: 5px;
+  --radius: 0.5rem;
+}
+* {
+  box-sizing: border-box;
+  outline: none;
+  border-radius: var(--radius);
+  font: inherit;
+  overscroll-behavior: contain;
+  -webkit-user-drag: none;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--font);
+}
+div {
+  gap: var(--gap);
+  display: flex;
+  flex-direction: column;
+}
+@mixin base {
+  background: var(--dark);
+  border: var(--border);
+}
+@mixin revert {
+  background: var(--font);
+  color: var(--bg);
+}
+@mixin center {
+  display: inline-flex;
+  place-content: center;
+  place-items: center;
+}
+@mixin interactive {
+  cursor: pointer;
+  &:disabled {
+    &:hover {
+      background: var(--dark);
+    }
+    cursor: inherit;
+    color: inherit;
+    opacity: 0.5;
+  }
+  &:hover {
+    background: var(--light);
+  }
+  &:active {
+    opacity: 0.5;
+  }
+  &.active {
+    background: var(--light);
+  }
+}
+@mixin button {
+  @include base;
+  @include center;
+  @include interactive;
+}
+::selection {
+  @include revert;
+}
+button {
+  @include button;
+}
+select:not([multiple]) {
+  @include button;
+  option {
+    background: var(--bg);
+  }
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  object-fit: contain;
+}
+textarea {
+  @include base;
+}
+label:has(input),
+label[for] {
+  cursor: pointer;
+}
+[type='file'] {
+  pointer-events: none;
+  &::file-selector-button {
+    pointer-events: auto;
+    @include button;
+  }
+}
+input:not([type]),
+[type='text'],
+[type='number'] {
+  @include base;
+  &::placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    cursor: pointer;
+  }
+}
+progress {
+  &::-webkit-progress-bar {
+    @include base;
+    border-radius: var(--radius);
+  }
+  &::-webkit-progress-value {
+    background: var(--font);
+  }
+}
+[type='range'] {
+  @include base;
+  appearance: none;
+  height: min-content;
+  &::-webkit-slider-thumb {
+    @include button;
+    border-radius: var(--radius);
+    display: block;
+    place-content: unset;
+    appearance: none;
+    width: 1em;
+    height: 1em;
+    scale: 1.4;
+  }
+  &::-webkit-slider-thumb:hover {
+    background: var(--light);
+    scale: 2;
+  }
+  &::-webkit-slider-thumb:active {
+    opacity: 0.5;
+  }
+}
+[type='checkbox'] {
+  @include button;
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+  &::after {
+    content: '✔';
+    font-weight: bold;
+    color: transparent;
+  }
+  &:checked {
+    &::after {
+      color: inherit;
+    }
+  }
+  &:indeterminate::after {
+    color: inherit;
+    content: '━';
+  }
+}
+[type='date'] {
+  @include base;
+  &::-webkit-datetime-edit-fields-wrapper {
+    cursor: text;
+  }
+  &::-webkit-datetime-edit-text {
+    cursor: inherit;
+  }
+  &::-webkit-datetime-edit-month-field:focus {
+    @include revert;
+  }
+  &::-webkit-datetime-edit-day-field:focus {
+    @include revert;
+  }
+  &::-webkit-datetime-edit-year-field:focus {
+    @include revert;
+  }
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+}
+
+.hint {
+  position: relative;
+  &:hover .tips {
+    display: flex;
+  }
+  .tips {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    width: max-content;
+    white-space: pre-line;
+    background: var(--dark);
+    backdrop-filter: blur(var(--blur));
+  }
+}
+
+.float {
+  position: fixed;
+  opacity: 0.5;
+  z-index: 1;
+  font-size: xx-large;
+  aspect-ratio: 1;
+  &:hover {
+    opacity: 1;
+  }
+}
+a {
+  text-decoration: underline;
+}
+small {
+  opacity: 0.5;
+  font-size: smaller;
+}

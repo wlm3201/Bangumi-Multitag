@@ -1,0 +1,42 @@
+name: Crawl
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Run script
+        run: node crawl.js
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "crawl"
+          git config --local user.email "crawl@gh.com"
+          git add public
+          git commit -m "0"
+          git push
