@@ -4,7 +4,7 @@ import search from '@/views/search.vue'
 import shelf from '@/views/shelf.vue'
 
 import { ref } from 'vue'
-let show = ref(false)
+let show = ref(true)
 </script>
 
 <template>
