@@ -17,8 +17,7 @@ bus.on('detail', (b) => (sbj.value = b))
       <div class="infobox">
         <span v-for="(v, k) in JSON.parse(sbj.infobox)">
           <b>{{ k }}</b
-          >：
-          {{ v instanceof Array ? v.join('，') : v }}
+          >：{{ v instanceof Array ? v.join('，') : v }}
         </span>
       </div>
     </div>
