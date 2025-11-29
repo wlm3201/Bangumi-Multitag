@@ -65,7 +65,7 @@ function copy(s) {
             <div class="bar" v-for="(v, i) in count">
               <div class="val">{{ v }}</div>
               <div class="col" :style="{ height: (v / max) * 100 + '%' }"></div>
-              <div class="idx">{{ i }}</div>
+              <div class="idx">{{ i + 1 }}</div>
             </div>
           </div>
           <div class="other">
