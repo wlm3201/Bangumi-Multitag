@@ -16,7 +16,6 @@ function scroll(e) {
 
 <style scoped lang="scss">
 .shelf {
-  height: 100vh;
   overflow: scroll;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));

@@ -86,10 +86,6 @@ search()
 
 <style scoped lang="scss">
 .search {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: var(--bg);
   flex-direction: row;
   place-items: center;
   border-bottom: var(--border);

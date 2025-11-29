@@ -19,6 +19,7 @@ let show = ref(true)
 <style scoped lang="scss">
 .bgm {
   gap: 0;
+  height: 100vh;
 }
 .float {
   position: fixed;
