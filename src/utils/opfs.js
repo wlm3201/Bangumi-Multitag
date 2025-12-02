@@ -25,4 +25,3 @@ export let opfs = {
     await dh.remove()
   },
 }
-window.opfs = opfs
