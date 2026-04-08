@@ -3,7 +3,7 @@ import { matchedTags, db } from '@/stores'
 import { bus, net } from '@/utils'
 import { ref } from 'vue'
 import { ctypes } from '@/scripts/search'
-import singleselect from '@/parts/singleselect.vue'
+import radio from '@/parts/radio.vue'
 
 let props = defineProps(['sbj'])
 let sbj = props.sbj
@@ -89,7 +89,7 @@ function copy(s) {
       <span class="tip">{{ ctypes[sbj.ctype] }}</span>
       <div class="tips">
         <div class="r">
-          <singleselect :options="_ctypes" v-model="sbj.ctype" @click="chType(sbj.ctype)" />
+          <radio :options="_ctypes" v-model="sbj.ctype" @click="chType(sbj.ctype)" />
         </div>
         <div class="rate" v-if="sbj.ctype">
           <div class="stars r">

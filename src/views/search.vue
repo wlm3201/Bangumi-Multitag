@@ -3,7 +3,7 @@ import checkbox from '@/parts/checkbox.vue'
 import datepicker from '@/parts/datepicker.vue'
 import multiselect from '@/parts/multiselect.vue'
 import prompt from '@/parts/prompter.vue'
-import singleselect from '@/parts/singleselect.vue'
+import radio from '@/parts/radio.vue'
 import { order, parse, platforms, queries, reset, tips, ctypes } from '@/scripts/search'
 import { db, stype } from '@/stores'
 import { reg } from '@/utils'
@@ -50,7 +50,7 @@ search()
     </button>
     <div class="hint">
       类别▽
-      <singleselect class="tips" :options="{ 1: '书籍', 2: '动画', 4: '游戏' }" v-model="stype" />
+      <radio class="tips" :options="{ 1: '书籍', 2: '动画', 4: '游戏' }" v-model="stype" />
     </div>
     <div class="hint">
       提示▽
@@ -69,11 +69,11 @@ search()
     <datepicker v-model="queries.end" />
     <div class="hint">
       {{ order[queries.order] }}▽
-      <singleselect class="tips" :options="order" v-model="queries.order" />
+      <radio class="tips" :options="order" v-model="queries.order" />
     </div>
     <div class="hint">
       {{ orderby[queries.orderby] }}▽
-      <singleselect class="tips" :options="orderby" v-model="queries.orderby" />
+      <radio class="tips" :options="orderby" v-model="queries.orderby" />
     </div>
     <label><checkbox v-model="queries.nsfw" />NSFW</label>
     <button @click="reset">重置</button>

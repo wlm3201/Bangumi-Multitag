@@ -23,6 +23,7 @@ d：在看
 o：搁置
 dr：抛弃
 sr：自评
+rd：评分差
 `)
 let cols = {
   y: "CAST(strftime('%m', date) AS INT)",
@@ -37,6 +38,7 @@ let cols = {
   o: 'on_hold',
   dr: 'dropped',
   sr: 'rating',
+  rd: 'score-rating',
 }
 export let order = {
   total: '评分数',
@@ -51,6 +53,7 @@ export let order = {
   on_hold: '搁置',
   dropped: '抛弃',
   rating: '自评',
+  'score-rating': '评分差',
 }
 export let platforms = ['TV', '剧场版', 'OVA', 'WEB', '其他']
 export let ctypes = { 0: '未收藏', 1: '想看', 2: '看过', 3: '在看', 4: '搁置', 5: '抛弃' }
@@ -86,7 +89,7 @@ function parseTerm(term) {
     )}%'`
   let col = cols[k]
   if (!col) {
-    if (infokeys.value.includes(k))
+    if (infokeys.value.includes(k) && v)
       return `${not}json_extract(infobox,'$.${k}') like '%${v.replaceAll('=', '')}%'`
     not == '' && matchedTags.add(k)
     if (v) {
