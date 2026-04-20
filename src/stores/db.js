@@ -15,22 +15,26 @@ async function reload() {
 async function load() {
   let os = localStorage.getItem(p)
   if (!os) return await loadNew()
+  checkNew()
+  return await loadOld()
+}
+async function checkNew() {
+  let os = localStorage.getItem(p)
   let s = await net.getSize(p)
-  if (+os == s) return await loadOld()
+  if (+os == s) return
   let ndb = await loadNew()
   let odb = await loadOld()
   migrate(odb, ndb)
-  return ndb
 }
 async function loadNew() {
   let r = await fetch(p)
-  localStorage.setItem(p, r.headers.get('content-length'))
   let b = await r.blob()
   let o = await unzip(b)
   let f = Object.values(o)[0]
   let ndb = await sqlite3(f)
   init(ndb)
   save(ndb)
+  localStorage.setItem(p, r.headers.get('content-length'))
   return ndb
 }
 function init(db) {
